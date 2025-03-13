@@ -109,6 +109,9 @@ endif
 # Clear this first to prevent accidental poisoning from env
 KERNEL_MAKE_FLAGS :=
 
+# Use UTC timezone on kernel build date
+KERNEL_MAKE_FLAGS += KBUILD_BUILD_TIMESTAMP="$(shell LC_ALL=C TZ=UTC date '+%a %b %e %Z %Y')"
+
 # Add back threads, ninja cuts this to $(getconf _NPROCESSORS_ONLN)/2
 KERNEL_MAKE_FLAGS += -j$(shell getconf _NPROCESSORS_ONLN)
 
